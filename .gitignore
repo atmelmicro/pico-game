@@ -1,0 +1,4 @@
+cmake-build-debug-mingw-arm
+build
+cmake-build-debug
+cmake-build-debug-arm/

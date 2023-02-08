@@ -1,0 +1,101 @@
+
+class Triangle : public SObject {
+public:
+    Triangle(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, uint16_t triangle_color);
+    void Draw() override;
+};
+
+
+
+class Fill_Circle : public SObject {
+public:
+    Fill_Circle(int16_t x, int16_t y, int16_t r, uint16_t square_color);
+    void Draw() override;
+
+};
+
+class Circle : public SObject {
+public:
+    Circle(int16_t x, int16_t y, int16_t r, uint16_t square_color);
+    void Draw() override;
+};
+
+class Fast_Line : public SObject {
+public:
+    Fast_Line(int16_t x, int16_t y, Lines type, int16_t size, uint16_t line_color);
+    void Draw() override;
+};
+
+
+
+
+
+Triangle::Triangle(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, uint16_t triangle_color)  {
+    this->x_points[0] = x1;
+    this->x_points[1] = x2;
+    this->x_points[2] = x3;
+    this->y_points[0] = y1;
+    this->y_points[1] = y2;
+    this->y_points[2] = y3;
+    this->type_of_object = TRIANGLE;
+    this->color = triangle_color;
+}
+
+void Triangle::Draw() {
+    drawTriangle(
+            this->x_points[0],
+            this->y_points[0],
+            this->x_points[1],
+            this->y_points[1],
+            this->x_points[2],
+            this->y_points[2],
+            this->color
+            );
+}
+
+
+Fill_Circle::Fill_Circle(int16_t x, int16_t y, int16_t r, uint16_t circle_color) {
+    this->x_points[0] = x;
+    this->x_points[1] = r;
+    this->y_points[0] = y;
+    this->y_points[1] = r;
+    this->type_of_object = FILL_CIRCLE;
+    this->color = circle_color;
+}
+
+void Fill_Circle::Draw() {
+    fillCircle(this->x_points[0], this->y_points[0], this->x_points[1], this->color);
+}
+
+Circle::Circle(int16_t x, int16_t y, int16_t r, uint16_t circle_color) {
+    this->x_points[0] = x;
+    this->x_points[1] = r;
+    this->y_points[0] = y;
+    this->y_points[1] = r;
+    this->type_of_object = CIRCLE;
+    this->color = circle_color;
+}
+
+void Circle::Draw() {
+    drawCircle(this->x_points[0], this->y_points[0], this->x_points[1], this->color);
+}
+
+Fast_Line::Fast_Line(int16_t x, int16_t y, Lines type, int16_t size, uint16_t line_color) {
+    this->x_points[0] = x;
+    this->y_points[0] = y;
+    this->x_points[1] = size;
+    this->type_of_object = type == H_LINE ? FAST_H_LINE : FAST_V_LINE;
+    this->color = line_color;
+}
+
+void Fast_Line::Draw() {
+    if(this->type_of_object == FAST_V_LINE) {
+        drawFastVLine(this->x_points[0], this->y_points[0], this->x_points[1], this->color);
+    } else {
+        drawFastHLine(this->x_points[0], this->y_points[0], this->x_points[1], this->color);
+    }
+}
+
+
+
+
