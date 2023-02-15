@@ -19,7 +19,7 @@ Součástí SDK je i malý 2D herní engine
 - (později) Baterie
 - Reproduktor Seeed Grove Speaker
 
-## Software
+## Software
 - C++
 - Raspberry Pi Pico SDK
 - LittleFS
