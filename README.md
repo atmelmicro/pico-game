@@ -23,3 +23,24 @@ Součástí SDK je i malý 2D herní engine
 - C++
 - Raspberry Pi Pico SDK
 - LittleFS
+
+# Knihovny
+
+## Screen
+Screen je knihovna která ovládá displej, součástí je framebuffer (microbuffer) díky kterému dokáže pico-game plynule obnovit obrazovku.
+
+Každý element na obrazovce je SObject (Screen Object). Základní typy jsou `Rect`, `Fill_Rect`, `Image`, `Text`, atd... 
+
+Microbuffer podporuje 24-bitové bitmapy a 32-bitové bitmapy které jsou uloženy na Picu.
+
+## Input
+Kinhovna input zpracovává vstupy z tlačítek a akcelerometru.
+
+Tlačítka zavolají funkci (buď Press nebo Hold) přes interupty. Akcelometr bude muset vývojář pollovat.
+
+## Filesystem
+
+Filesystem spravuje LittleFS oddíl na SPI paměti. Velikost oddílu je nastavitelná. 
+
+Pro nahrání souborů se používá speciální firmware který potřebuje aby soubour byl rozdělen to bytů. V boudoucnosti je možnost udělat SwiftUI nebo web aplikaci pro jednoduché nahrávání souborů
+
