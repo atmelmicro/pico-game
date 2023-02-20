@@ -27,7 +27,7 @@ Součástí SDK je i malý 2D herní engine
 # Knihovny
 
 ## Screen
-Screen je knihovna která ovládá displej, součástí je framebuffer (microbuffer) díky kterému dokáže pico-game plynule obnovit obrazovku.
+Screen je knihovna která ovládá displej, součástí je framebuffer (microbuffer) díky kterému dokáže pico-game plynule obnovit obrazovku. Bohužel framebuffer využívá hodně paměti. Existují jiné metody obnovování displeje, ale ty jsou pomalejší. Celý framebuffer používá ~40kB paměti ((128[width]*160[height]*2[bit depth {bytes}) / 1000[bytes->kilobytes]) = 40.96. 
 
 Každý element na obrazovce je SObject (Screen Object). Základní typy jsou `Rect`, `Fill_Rect`, `Image`, `Text`, atd... 
 
@@ -50,4 +50,19 @@ Pro zvuk je plán použít stanadrtní formát zvuku (např .ogg, .midi). Existu
 
 `BackgroundMusic` stačí zapnout jednou a vždy se bude přehrávat na pozadí, hudba se bude opakovat.
 
-`SoundEffect` se spustí jednou a potom vypne, SoundEffect překryje `BackgroundMusic`
+`SoundEffect` se spustí jednou a potom vypne, `SoundEffect` překryje `BackgroundMusic`
+
+## GameEngine
+
+GameEngine je klihovna pro malý 2D herní engine. Podporuje zákládní části game enginu jako fyziku (RigidBody, atd.) a sprity.
+
+# Timeline / Milestones
+- [x] Základní knihovna na displej
+- [x] Základní knihovna na filesystem
+- [x] Základní knihovna na akcelerometr
+- [ ] Přidat kruhy a kružnice do knihovny pro displej
+- [ ] Přidat základní průhlednost do knihovny pro displej
+- [ ] Přidat otáčení do knihovny pro displej
+- [ ] Dokončit knihovnu pro displej
+- [ ] Začít na knihovně pro reproduktor a parsování souborů
+- [ ]
