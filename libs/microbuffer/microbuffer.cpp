@@ -97,7 +97,7 @@ void Framebuffer::draw_string(int x, int y, Color color, const std::string& stri
     }
 }
 
-void draw_circle(int x, int y, int r, Color color) {
+void Framebuffer::draw_circle(int x, int y, int r, Color color) {
     int16_t f, ddF_x, ddF_y, x, y;
     f = 1 - r, ddF_x = 1, ddF_y = -2 * r, x = 0, y = r;
     draw_pixel(x0  , y0 + r, color);
@@ -124,7 +124,31 @@ void draw_circle(int x, int y, int r, Color color) {
     }
 }
 
-void void draw_fill_circle(int x, int y, int r, Color color) {
+void fillCircleHelper(int16_t x0, int16_t y0, int16_t r, uint8_t cornername, int16_t delta, uint16_t color) {
+  int16_t f, ddF_x, ddF_y, x, y;
+  f = 1 - r, ddF_x = 1, ddF_y = -2 * r, x = 0, y = r;
+  while (x<y) {
+    if (f >= 0) {
+      y--;
+      ddF_y += 2;
+      f     += ddF_y;
+    }
+    x++;
+    ddF_x += 2;
+    f     += ddF_x;
+
+    if (cornername & 0x1) {
+      draw_v_line(x0+x, y0-y, 2*y+1+delta, color);
+      draw_v_line(x0+y, y0-x, 2*x+1+delta, color);
+    }
+    if (cornername & 0x2) {
+      draw_v_line(x0-x, y0-y, 2*y+1+delta, color);
+      draw_v_line(x0-y, y0-x, 2*x+1+delta, color);
+    }
+  }
+}
+
+void Framebuffer::draw_fill_circle(int x, int y, int r, Color color) {
     draw_v_line(x0, y0 - r, 2 * r + 1, color);
     fillCircleHelper(x0, y0, r, 3, 0, color);
 }
