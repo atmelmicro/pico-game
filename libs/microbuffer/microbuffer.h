@@ -31,6 +31,8 @@ public:
     void draw_pixel(int x, int y, Color color);
     void draw_char(int x, int y, Color color, char ch);
     void draw_string(int x, int y, Color color, const std::string& string);
+    void draw_circle(int x, int y, int r, Color color);
+    void draw_fill_circle(int x, int y, int r, Color color);
 };
 
 #endif //LCD_MICROBUFFER_H
