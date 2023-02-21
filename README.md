@@ -61,7 +61,6 @@ GameEngine je klihovna pro malý 2D herní engine. Podporuje zákládní části
 - [x] Základní knihovna na filesystem
 - [x] Základní knihovna na akcelerometr
 - [ ] Dokončit knihovnu pro displej (kruhy, kružnice, průhlednost, otáčení objektů)
-- [ ] Input knihovna
+- [ ] Input knihovna
 - [ ] Knihovna pro zvuk
 - [ ] Game Engine
-- 
