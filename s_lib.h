@@ -10,6 +10,12 @@
 #ifndef LCD_S_LIB_H
 #define LCD_S_LIB_H
 
+enum Rotation {
+    deg90,
+    deg180,
+    deg270
+};
+
 class SObject {
 public:
     int16_t y_points[3], x_points[3];

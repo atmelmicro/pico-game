@@ -1,13 +1,8 @@
 //
 // Created by David on 23.11.2022.
 //
-#include <memory>
-
 #include "pico/stdlib.h"
 #include "s_lib.h"
-#include "ST7735_TFT.h"
-#include "hardware/spi.h"
-#include "bmp.h"
 
 int main() {
     stdio_init_all();
