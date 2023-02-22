@@ -65,4 +65,16 @@ public:
     void Draw(const std::shared_ptr<Framebuffer>& parentFramebuffer) override;
 };
 
+class Circle : public SObject {
+public:
+    Circle(int16_t x, int16_t y, int16_t r, Color color);
+    void Draw(const std::shared_ptr<Framebuffer>& parentFramebuffer) override;
+};
+
+class Fill_Circle : public SObject {
+public:
+    Fill_Circle(int16_t x, int16_t y, int16_t r, Color color);
+    void Draw(const std::shared_ptr<Framebuffer>& parentFramebuffer) override;
+};
+
 #endif //LCD_S_LIB_H

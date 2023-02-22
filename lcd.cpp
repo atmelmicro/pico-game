@@ -24,6 +24,8 @@ int main() {
     screen.SObjects["a"].reset(a);
     screen.SObjects["hw_text"] = std::make_unique<Text>(0, 0, Color(0, 255, 0), "Hello World!");
     screen.SObjects["pixel"] = std::make_unique<Pixel>(58, 100, Color(255, 0, 0));
+    screen.SObjects["circle"] = std::make_unique<Circle>(100, 100, 10, Color(25, 214, 83));
+    screen.SObjects["fill-circle"] = std::make_unique<Fill_Circle>(10, 100, 5, Color(255, 0, 0));
     screen.Draw();
     sleep_ms(2000);
 
