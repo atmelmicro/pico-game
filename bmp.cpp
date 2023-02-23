@@ -66,10 +66,24 @@ uint16_t Color565(int16_t r, int16_t g, int16_t b){
     return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
 }
 
-void BitmapFile::Draw(const std::shared_ptr<Framebuffer>& fb, int x, int y) {
+void BitmapFile::Draw(const std::shared_ptr<Framebuffer>& fb, int x, int y, Rotation rot) {
     int buffidx = 0; // Set index to beginning
 
-    for (int row=height; row>0; row--) { // For each scanline...
+    if(rot == Rotation::deg180) {
+        for (int row=0; row < height; row++) { // For each scanline...
+
+            for (int col = width; col > 0; col--) { // For each pixel...
+                int b = buffer[buffidx++];
+                int g = buffer[buffidx++];
+                int r = buffer[buffidx++];
+                fb->draw_pixel(col, row, Color(r, b, g));
+            } // end pixel
+            buffidx += 2;
+        } // end scanline
+        return;
+    }
+
+    for (int row = height; row > 0; row--) { // For each scanline...
 
         for (int col=0; col<width; col++) { // For each pixel...
             int b = buffer[buffidx++];

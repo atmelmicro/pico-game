@@ -10,12 +10,6 @@
 #ifndef LCD_S_LIB_H
 #define LCD_S_LIB_H
 
-enum Rotation {
-    deg90,
-    deg180,
-    deg270
-};
-
 class SObject {
 public:
     int16_t y_points[3], x_points[3];
@@ -67,7 +61,8 @@ class Image : public SObject {
 private:
     BitmapFile *file;
 public:
-    Image(int16_t x, int16_t y, const std::string& file_name);
+    Rotation rot;
+    Image(int16_t x, int16_t y, const std::string& file_name, Rotation rotation);
     void Draw(const std::shared_ptr<Framebuffer>& parentFramebuffer) override;
 };
 
