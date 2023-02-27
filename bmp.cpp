@@ -66,32 +66,50 @@ uint16_t Color565(int16_t r, int16_t g, int16_t b){
     return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
 }
 
+void BitmapFile::DrawBitmapRow(const std::shared_ptr<Framebuffer>& fb, int* buffidx, int x, int y) {
+        int b = buffer[(*buffidx)++];
+        int g = buffer[(*buffidx)++];
+        int r = buffer[(*buffidx)++];
+        fb->draw_pixel(x, y, Color(r, b, g));
+};
+
 void BitmapFile::Draw(const std::shared_ptr<Framebuffer>& fb, int x, int y, Rotation rot) {
     int buffidx = 0; // Set index to beginning
 
-    if(rot == Rotation::deg180) {
-        for (int row=0; row < height; row++) { // For each scanline...
-
-            for (int col = width; col > 0; col--) { // For each pixel...
-                int b = buffer[buffidx++];
-                int g = buffer[buffidx++];
-                int r = buffer[buffidx++];
-                fb->draw_pixel(col, row, Color(r, b, g));
-            } // end pixel
-            buffidx += 2;
-        } // end scanline
-        return;
+    switch(rot) {
+        case deg180:
+            for (int row=0; row < height; row++) {
+                for (int col = width; col > 0; col--) {
+                    DrawBitmapRow(fb, &buffidx, col, row);
+                }
+                buffidx += 2;
+            }
+            break;
+        case deg0:
+            for (int row = height; row > 0; row--) {
+                for (int col=0; col<width; col++) {
+                    DrawBitmapRow(fb, &buffidx, col, row);
+                }
+                buffidx += 2;
+            }
+            break;
+        case deg90:
+            for (int bmp_x = 0; bmp_x < height; ++bmp_x) {
+                for (int bmp_y = 0; bmp_y < width; ++bmp_y) {
+                    DrawBitmapRow(fb, &buffidx, bmp_x, bmp_y);
+                }
+                buffidx += 2;
+            }
+            break;
+        case deg270:
+            for (int bmp_x = height; bmp_x > 0; --bmp_x) {
+                for (int bmp_y = width; bmp_y > 0; --bmp_y) {
+                    DrawBitmapRow(fb, &buffidx, bmp_x, bmp_y);
+                }
+                buffidx += 2;
+            }
+            break;
     }
 
-    for (int row = height; row > 0; row--) { // For each scanline...
-
-        for (int col=0; col<width; col++) { // For each pixel...
-            int b = buffer[buffidx++];
-            int g = buffer[buffidx++];
-            int r = buffer[buffidx++];
-            fb->draw_pixel(col, row, Color(r, b, g));
-        } // end pixel
-        buffidx += 2;
-    } // end scanline
 
 }

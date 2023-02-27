@@ -21,7 +21,7 @@ class BitmapFile {
 private:
     uint8_t *buffer;
     int height, width;
-    void drawBitmapCol(int *buffidx, const std::shared_ptr<Framebuffer>& fb, int row);
+    void DrawBitmapRow(const std::shared_ptr<Framebuffer>& fb, int* buffidx, int x, int y);
 public:
     BitmapFile(const char *file_name);
     void Draw(const std::shared_ptr<Framebuffer>& fb, int x, int y, Rotation rot);
