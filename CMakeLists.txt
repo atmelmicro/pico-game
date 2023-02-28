@@ -30,8 +30,6 @@ set(TFT_OPTIONS TFT_ENABLE_BLACK TFT_ENABLE_RESET TFT_ENABLE_TEXT TFT_ENABLE_SHA
         TFT_ENABLE_ROTATE TFT_ENABLE_SCROLL
         CACHE STRING "TFT options/functions")
 
-# Add executable. Default name is the project name, version 0.1
-
 add_compile_definitions(SPI_TFT_PORT=${SPI_TFT_PORT})
 add_compile_definitions(SPI_TFT_CS=${SPI_TFT_CS})
 add_compile_definitions(SPI_TFT_DC=${SPI_TFT_DC})
@@ -46,17 +44,9 @@ endforeach(opt)
 add_subdirectory(libs/lfs)
 add_subdirectory(libs/lcd)
 add_subdirectory(libs/microbuffer)
-
-#target_link_libraries(lcd PUBLIC )
-
-
+add_subdirectory(libs/input)
 
 add_executable(lcd lcd.cpp s_lib.cpp s_lib.h bmp.h bmp.cpp)
-
-#target_include_directories(lcd PUBLIC
-#        "${PROJECT_BINARY_DIR}"
-#        "${PROJECT_SOURCE_DIR}/libs/lcd"
-#        )
 
 pico_set_program_name(lcd "lcd")
 pico_set_program_version(lcd "0.1")
@@ -74,6 +64,7 @@ target_link_libraries(lcd
         st7735
         lfs
         microbuffer
+        input
         )
 
 pico_add_extra_outputs(lcd)

@@ -3,11 +3,13 @@
 //
 #include "pico/stdlib.h"
 #include "s_lib.h"
+#include "input.h"
 
 int main() {
     stdio_init_all();
     sleep_ms(400);
     Screen screen;
+    Input input;
     sleep_ms(400);
 
     if (pico_mount(false) != LFS_ERR_OK) {
