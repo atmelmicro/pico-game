@@ -5,11 +5,16 @@
 #include "s_lib.h"
 #include "input.h"
 
+void g(void* p) {
+
+}
+
 int main() {
     stdio_init_all();
     sleep_ms(400);
     Screen screen;
-    Input input;
+    int b = 423;
+    Input input(&g, &g, &g, &g, (void*)(&b));
     sleep_ms(400);
 
     if (pico_mount(false) != LFS_ERR_OK) {
