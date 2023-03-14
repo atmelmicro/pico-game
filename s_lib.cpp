@@ -79,6 +79,27 @@ void Image::Draw(const std::shared_ptr<Framebuffer>& parentFramebuffer) {
     this->file->Draw(parentFramebuffer, this->x_points[0], this->y_points[0]);
 }
 
+Circle::Circle(int16_t x, int16_t y, int16_t r,Color color) {
+    this->x_points[0] = x;
+    this->y_points[0] = y;
+    this->x_points[1] = r;
+    this->color = color;
+}
+void Circle::Draw(const std::shared_ptr<Framebuffer>& parentFramebuffer) {
+    parentFramebuffer->draw_circle(this->x_points[0], this->y_points[0], this->x_points[1], this->color);
+}
+
+Fill_Circle::Fill_Circle(int16_t x, int16_t y, int16_t r,Color color) {
+    this->x_points[0] = x;
+    this->y_points[0] = y;
+    this->x_points[1] = r;
+    this->color = color;
+}
+void Fill_Circle::Draw(const std::shared_ptr<Framebuffer>& parentFramebuffer) {
+    parentFramebuffer->draw_fill_circle(this->x_points[0], this->y_points[0], this->x_points[1], this->color);
+}
+
+
 void Screen::Draw() {
     fb->fill(Color(0, 0, 0));
     for(const auto& [key, value] : SObjects) {

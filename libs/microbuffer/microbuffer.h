@@ -19,6 +19,7 @@ class Framebuffer {
 private:
     int length, width, height;
     int get_pixel_pos(int x, int y);
+    void fillCircleHelper(int16_t x0, int16_t y0, int16_t r, uint8_t cornername, int16_t delta, Color color);
 public:
     uint16_t *buffer;
     Framebuffer(int fb_width, int fb_height);
@@ -31,6 +32,8 @@ public:
     void draw_pixel(int x, int y, Color color);
     void draw_char(int x, int y, Color color, char ch);
     void draw_string(int x, int y, Color color, const std::string& string);
+    void draw_circle(int x0, int y0, int r, Color color);
+    void draw_fill_circle(int x0, int y0, int r, Color color);
 };
 
 #endif //LCD_MICROBUFFER_H
