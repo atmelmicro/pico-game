@@ -69,14 +69,15 @@ void Text::Draw(const std::shared_ptr<Framebuffer>& parentFramebuffer) {
     parentFramebuffer->draw_string(this->x_points[0], this->y_points[0], this->color, this->str);
 }
 
-Image::Image(int16_t x, int16_t y, const std::string& file_name) {
+Image::Image(int16_t x, int16_t y, const std::string& file_name, Rotation rotation) {
     this->file = new BitmapFile(file_name.c_str());
     this->x_points[0] = x;
     this->y_points[0] = y;
+    this->rot = rotation;
 }
 
 void Image::Draw(const std::shared_ptr<Framebuffer>& parentFramebuffer) {
-    this->file->Draw(parentFramebuffer, this->x_points[0], this->y_points[0]);
+    this->file->Draw(parentFramebuffer, this->x_points[0], this->y_points[0], this->rot);
 }
 
 Circle::Circle(int16_t x, int16_t y, int16_t r,Color color) {

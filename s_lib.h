@@ -61,7 +61,8 @@ class Image : public SObject {
 private:
     BitmapFile *file;
 public:
-    Image(int16_t x, int16_t y, const std::string& file_name);
+    Rotation rot;
+    Image(int16_t x, int16_t y, const std::string& file_name, Rotation rotation);
     void Draw(const std::shared_ptr<Framebuffer>& parentFramebuffer) override;
 };
 

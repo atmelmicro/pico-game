@@ -1,13 +1,8 @@
 //
 // Created by David on 23.11.2022.
 //
-#include <memory>
-
 #include "pico/stdlib.h"
 #include "s_lib.h"
-#include "ST7735_TFT.h"
-#include "hardware/spi.h"
-#include "bmp.h"
 
 int main() {
     stdio_init_all();
@@ -24,6 +19,7 @@ int main() {
     screen.SObjects["a"].reset(a);
     screen.SObjects["hw_text"] = std::make_unique<Text>(0, 0, Color(0, 255, 0), "Hello World!");
     screen.SObjects["pixel"] = std::make_unique<Pixel>(58, 100, Color(255, 0, 0));
+    screen.SObjects["image"] = std::make_unique<Image>(58, 100, "arrow", Rotation::deg270);
     screen.SObjects["circle"] = std::make_unique<Circle>(100, 100, 10, Color(25, 214, 83));
     screen.SObjects["fill-circle"] = std::make_unique<Fill_Circle>(10, 100, 5, Color(255, 0, 0));
     screen.Draw();
